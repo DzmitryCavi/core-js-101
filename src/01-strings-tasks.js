@@ -5,7 +5,6 @@
  *                                                                                           *
  ******************************************************************************************* */
 
-
 function concatenateStrings(value1, value2) {
   return value1 + value2;
 }
@@ -44,7 +43,6 @@ function getStringFromTemplate(firstName, lastName) {
 function extractNameFromTemplate(value) {
   return value.slice(7, value.length - 1);
 }
-
 
 /**
  * Returns a first char of the given string.
@@ -87,7 +85,9 @@ function removeLeadingAndTrailingWhitespaces(value) {
  *   'cat', 3 => 'catcatcat'
  */
 function repeatString(value, count) {
-  return Array(count).fill(value).join('');
+  return Array(count)
+    .fill(value)
+    .join('');
 }
 
 /**
@@ -120,7 +120,6 @@ function removeFirstOccurrences(str, value) {
 function unbracketTag(str) {
   return str.replace('<', '').replace('>', '');
 }
-
 
 /**
  * Converts all characters of the specified string into the upper case
@@ -183,16 +182,33 @@ function getRectangleString(width, height) {
   for (let i = 0; i < height; i += 1) {
     for (let j = 0; j < width; j += 1) {
       switch (i) {
-        case 0: if (j === width - 1) { str += '┐'; } else if (j === 0) { str += '┌'; } else { str += '─'; } break;
-        case height - 1: if (j === width - 1) { str += '┘'; } else if (j === 0) { str += '└'; } else { str += '─'; } break;
-        default: str += j === width - 1 || j === 0 ? '│' : ' '; break;
+        case 0:
+          if (j === width - 1) {
+            str += '┐';
+          } else if (j === 0) {
+            str += '┌';
+          } else {
+            str += '─';
+          }
+          break;
+        case height - 1:
+          if (j === width - 1) {
+            str += '┘';
+          } else if (j === 0) {
+            str += '└';
+          } else {
+            str += '─';
+          }
+          break;
+        default:
+          str += j === width - 1 || j === 0 ? '│' : ' ';
+          break;
       }
     }
     str += '\n';
   }
   return str;
 }
-
 
 /**
  * Encode specified string with ROT13 cipher
@@ -214,12 +230,17 @@ function encodeToRot13(str) {
   const str13 = str.split(' ').reduce((s, el) => {
     let st = '';
     for (let i = 0; i < el.length; i += 1) {
-      if (!el[i].match(/[A-Za-z]/)) { st += el[i]; } else {
+      if (!el[i].match(/[A-Za-z]/)) {
+        st += el[i];
+      } else {
         const sChar = el.charCodeAt(i);
         const sCharRot = sChar + 13;
-        st += String.fromCharCode((sChar <= 90 ? 90 : 122) >= sCharRot ? sCharRot : sCharRot - 26);
+        st += String.fromCharCode(
+          (sChar <= 90 ? 90 : 122) >= sCharRot ? sCharRot : sCharRot - 26,
+        );
       }
-    } return s === '' ? `${s}${st}` : `${s} ${st}`;
+    }
+    return s === '' ? `${s}${st}` : `${s} ${st}`;
   }, '');
   return str13;
 }
@@ -237,10 +258,9 @@ function encodeToRot13(str) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  throw new Error('Not implemented');
+function isString(value) {
+  return typeof value === 'string' || value instanceof String;
 }
-
 
 /**
  * Returns playid card id.
@@ -268,14 +288,61 @@ function isString(/* value */) {
  */
 function getCardId(value) {
   const Alphabet = [
-    'A♣', '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣',
-    'A♦', '2♦', '3♦', '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦', 'J♦', 'Q♦', 'K♦',
-    'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥',
-    'A♠', '2♠', '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠', '10♠', 'J♠', 'Q♠', 'K♠',
+    'A♣',
+    '2♣',
+    '3♣',
+    '4♣',
+    '5♣',
+    '6♣',
+    '7♣',
+    '8♣',
+    '9♣',
+    '10♣',
+    'J♣',
+    'Q♣',
+    'K♣',
+    'A♦',
+    '2♦',
+    '3♦',
+    '4♦',
+    '5♦',
+    '6♦',
+    '7♦',
+    '8♦',
+    '9♦',
+    '10♦',
+    'J♦',
+    'Q♦',
+    'K♦',
+    'A♥',
+    '2♥',
+    '3♥',
+    '4♥',
+    '5♥',
+    '6♥',
+    '7♥',
+    '8♥',
+    '9♥',
+    '10♥',
+    'J♥',
+    'Q♥',
+    'K♥',
+    'A♠',
+    '2♠',
+    '3♠',
+    '4♠',
+    '5♠',
+    '6♠',
+    '7♠',
+    '8♠',
+    '9♠',
+    '10♠',
+    'J♠',
+    'Q♠',
+    'K♠',
   ];
   return Alphabet.indexOf(value);
 }
-
 
 module.exports = {
   concatenateStrings,
