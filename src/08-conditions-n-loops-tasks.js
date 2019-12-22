@@ -396,8 +396,8 @@ function toNaryString(num, n) {
 function getCommonDirectoryPath(pathes) {
   let current = 0;
   let breakPoint = 0;
-
-  while (true) {
+  const bool = true;
+  while (bool) {
     let isSame = true;
 
     for (let i = 0; i < pathes.length; i += 1) {
